@@ -20,6 +20,7 @@ import {
   validatePhone,
 } from "../utils/validation";
 import { authService } from "../services/authService";
+import { useAuthStore } from "../store/authStore";
 
 interface LoginScreenProps {
   navigation: any;
@@ -32,6 +33,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [emailOrPhoneError, setEmailOrPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const setAuth = useAuthStore((state) => state.setAuth);
 
   const handleEmailOrPhoneChange = (value: string) => {
     setEmailOrPhone(value);
@@ -97,17 +99,16 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
         return;
       }
 
-      // Token is automatically stored in SecureStore by authService
-      Alert.alert("Success", "Login successful!", [
-        {
-          text: "OK",
-          onPress: () => {
-            // Navigate to main app or home screen
-            // navigation.navigate("Home");
-            console.log("Logged in with token:", token);
-          },
+      // Persist auth state for navigation guard
+      setAuth({
+        token,
+        user: {
+          id: (response as any)?.userId,
+          email: (response as any)?.email,
+          name: (response as any)?.name,
         },
-      ]);
+      });
+      // AppNavigator will switch stacks when isAuthenticated becomes true
     } catch (error: any) {
       // Don't navigate away on error - stay on login screen
       const errorMessage = error.message || "An error occurred during login";

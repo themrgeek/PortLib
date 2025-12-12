@@ -1,0 +1,36 @@
+/**
+ * Global styles with Tailwind CSS directives
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utility classes for the design system */
+@layer utilities {
+  /* Ensure proper text color contrast */
+  .text-slate-900 {
+    color: #0f172a;
+  }
+
+  .text-slate-700 {
+    color: #334155;
+  }
+
+  .text-slate-500 {
+    color: #64748b;
+  }
+}
+
+/* Dark mode overrides */
+.dark .text-slate-900 {
+  color: #f9fafb;
+}
+
+.dark .text-slate-700 {
+  color: #d1d5db;
+}
+
+.dark .text-slate-500 {
+  color: #9ca3af;
+}
