@@ -7,12 +7,16 @@ module.exports = {
       colors: {
         // Design System Colors - Color Palette
         primary: "#2563EB",
+        "primary-100": "#E0E7FF",
         "primary-light": "#E0E7FF",
         success: "#059669",
+        "success-100": "#DCFCE7",
         "success-light": "#DCFCE7",
         warning: "#D97706",
+        "warning-100": "#FFFBEB",
         "warning-light": "#FFFBEB",
         error: "#DC2626",
+        "error-100": "#FEF2F2",
         "error-light": "#FEF2F2",
         background: "#F8FAFC",
         surface: "#FFFFFF",
